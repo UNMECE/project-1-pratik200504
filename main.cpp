@@ -65,7 +65,24 @@ void constantCurrentCharging(Capacitor* cap)
 		}
 	}
 }
+//constant Voltage Charging
+	cap->voltage[0]=0.0;
+	cap->current[0]=V0/R;
 
+//time iteration loop 
+	for(int i=1; i<num_timesteps; i++)
+	{
+ 		cap->current[i]=cap->current[i-1]-(cap->current[i-1]* delta_t/(R* cap->C));
+ 		cap->voltage[i]=cap->voltage[i-1]+(cap->current[i-1]* delta_t/ cap->C);
+
+ //output every 200 timesteps
+  	if(i%200==0)
+ 		{	
+ 			cout<<fixed<<setprecison(6);
+			cout<<"[const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"currnet:" <<cap->current[i]<<"A"<<endl;
+		}
+	}
+}
 //main function
 int main()
 {
