@@ -49,7 +49,7 @@ void freeCapacitor(Capacitor* cap)
 //constant current charging
 void constantCurrentCharging(Capacitor* cap)
 {
-	cap->voltage[0]=0.0;
+	cap->voltage[0]=V0;
 	cap->current[0]=I_const;
 
 	for(int i=1; i<num_timesteps; i++)
@@ -81,7 +81,7 @@ void constantVoltageCharging(Capacitor* cap)
   	if(i%200==0)
  		{	
  			cout<<fixed<<setprecision(6);
-			cout<<"[const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"currnet:" <<cap->current[i]<<"A"<<endl;
+			cout<<"[const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"current:" <<cap->current[i]<<"A"<<endl;
 		}
 	}
 }
