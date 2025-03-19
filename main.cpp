@@ -24,7 +24,7 @@ const double I_const=1e-2;//constant current(A)
 const double V0=10.0;//initial voltage
 
 //function to allocate memory for arrays
-void initializerCapacitor(Capacitor* cap)
+void initializeCapacitor(Capacitor* cap)
 {
 	cap->C =C_val;
 	cap->time=new double[num_timesteps];
@@ -66,6 +66,8 @@ void constantCurrentCharging(Capacitor* cap)
 	}
 }
 //constant Voltage Charging
+void constantVoltageCharging(Capacitor* cap)
+{
 	cap->voltage[0]=0.0;
 	cap->current[0]=V0/R;
 
@@ -78,7 +80,7 @@ void constantCurrentCharging(Capacitor* cap)
  //output every 200 timesteps
   	if(i%200==0)
  		{	
- 			cout<<fixed<<setprecison(6);
+ 			cout<<fixed<<setprecision(6);
 			cout<<"[const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"currnet:" <<cap->current[i]<<"A"<<endl;
 		}
 	}
