@@ -68,7 +68,7 @@ void constantCurrentCharging(Capacitor* cap)
 //constant Voltage Charging
 void constantVoltageCharging(Capacitor* cap)
 {
-	cap->voltage[0]=V0;
+	cap->voltage[0]=0.0;
 	cap->current[0]=V0/R;
 
 //time iteration loop 
