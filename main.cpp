@@ -41,9 +41,9 @@ void initializeCapacitor(Capacitor* cap)
 //function to free memory
 void freeCapacitor(Capacitor* cap)
 {
-	delete[] cap->time;cap->time=nullptr;
-	delete[] cap->voltage; cap->voltage=nullptr;
-	delete[] cap->current; cap->current=nullptr;
+	delete[] cap->time;cap->time=NULL;
+	delete[] cap->voltage; cap->voltage=NULL;
+	delete[] cap->current; cap->current=NULL;
 }
 
 //constant current charging
@@ -61,7 +61,7 @@ void constantCurrentCharging(Capacitor* cap)
 		if(i%200==0)
 		{
 			cout<<fixed <<setprecision(6);
-			cout<<"[Const Voltage] Time: "<<cap->time[i]<<"s," << "Voltage:" <<cap->voltage[i]<<"V, "<<"Current:" <<cap->current[i]<<"A" <<endl;
+			cout<<"[Const Current] Time: "<<cap->time[i]<<"s," << "Voltage:" <<cap->voltage[i]<<"V, "<<"Current:" <<cap->current[i]<<"A" <<endl;
 		}
 	}
 }
@@ -81,7 +81,7 @@ void constantVoltageCharging(Capacitor* cap)
   	if(i%200==0)
  		{	
  			cout<<fixed<<setprecision(6);
-			cout<<"[const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"current:" <<cap->current[i]<<"A"<<endl;
+			cout<<"[Const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"current:" <<cap->current[i]<<"A"<<endl;
 		}
 	}
 }
