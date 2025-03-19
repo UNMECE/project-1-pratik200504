@@ -41,15 +41,15 @@ void initializeCapacitor(Capacitor* cap)
 //function to free memory
 void freeCapacitor(Capacitor* cap)
 {
-	delete[] cap->time;
-	delete[] cap->voltage;
-	delete[] cap->current;
+	delete[] cap->time;cap->time=nullptr;
+	delete[] cap->voltage; cap->voltage=nullptr;
+	delete[] cap->current; cap->current=nullptr;
 }
 
 //constant current charging
 void constantCurrentCharging(Capacitor* cap)
 {
-	cap->voltage[0]=V0;
+	cap->voltage[0]=0.0;
 	cap->current[0]=I_const;
 
 	for(int i=1; i<num_timesteps; i++)
@@ -68,7 +68,7 @@ void constantCurrentCharging(Capacitor* cap)
 //constant Voltage Charging
 void constantVoltageCharging(Capacitor* cap)
 {
-	cap->voltage[0]=0.0;
+	cap->voltage[0]=V0;
 	cap->current[0]=V0/R;
 
 //time iteration loop 
