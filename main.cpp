@@ -1,10 +1,12 @@
 #include<iostream>
 #include<iomanip> //for std:: setprecision
 #include<cstdlib> //for malloc and free
+#include <bits/stdc++.h>
+#include<cmath>
 
 using namespace std;
 
-//define the structure for the capacitor
+//define the structuree for the capacitor
 struct _capacitor{
 	double* time;
 	double* voltage;
@@ -18,7 +20,7 @@ typedef struct _capacitor Capacitor;
 const double delta_t=1e-10;//time step
 const double final_time=5e-6;//final time(S)
 const int num_timesteps=50000;//total number of timesteps
-const double R=1000;//resistance(ohms)
+const double R=1000.0;//resistance(ohms)
 const double C_val=100e-12;//capacitance(F)
 const double I_const=1e-2;//constant current(A)
 const double V0=10.0;//initial voltage
@@ -41,9 +43,9 @@ void initializeCapacitor(Capacitor* cap)
 //function to free memory
 void freeCapacitor(Capacitor* cap)
 {
-	delete[] cap->time;cap->time=NULL;
-	delete[] cap->voltage; cap->voltage=NULL;
-	delete[] cap->current; cap->current=NULL;
+	delete[] cap->time;cap->time=nullptr;
+	delete[] cap->voltage; cap->voltage=nullptr;
+	delete[] cap->current; cap->current=nullptr;
 }
 
 //constant current charging
@@ -54,8 +56,8 @@ void constantCurrentCharging(Capacitor* cap)
 
 	for(int i=1; i<num_timesteps; i++)
 	{
-	cap->voltage[i]=cap->voltage[i-1]+(cap->current[i-1]* delta_t/cap->C);
-	cap->current[i]=I_const; //throughout const
+		cap->voltage[i]=cap->voltage[i-1]+(cap->current[i-1]* delta_t/cap->C);
+		cap->current[i]=I_const;//throughout constant
 
 	//output every 200 timesteps
 		if(i%200==0)
@@ -74,14 +76,14 @@ void constantVoltageCharging(Capacitor* cap)
 //time iteration loop 
 	for(int i=1; i<num_timesteps; i++)
 	{
- 		cap->current[i]=cap->current[i-1]-(cap->current[i-1]* delta_t/(R* cap->C));
- 		cap->voltage[i]=cap->voltage[i-1]+(cap->current[i-1]* delta_t/ cap->C);
+ 		cap->current[i]=cap->current[i-1]*(1.0-delta_t/(R*cap->C));
+ 		cap->voltage[i]=cap->voltage[i-1]+(cap->current[i-1]*delta_t/cap->C);
 
  //output every 200 timesteps
   	if(i%200==0)
  		{	
  			cout<<fixed<<setprecision(6);
-			cout<<"[Const Voltage] Time: "<<cap->time[i]<<"s," <<"Voltage:" <<cap->voltage[i]<<"V, " <<"current:" <<cap->current[i]<<"A"<<endl;
+			cout<<"[Const Voltage] Time: "<<cap->time[i]<<"s, Voltage:" <<cap->voltage[i]<<"V, current:" <<cap->current[i]<<"A"<<endl;
 		}
 	}
 }
