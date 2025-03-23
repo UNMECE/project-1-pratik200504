@@ -1,7 +1,6 @@
 #include<iostream>
 #include<iomanip> //for std:: setprecision
 #include<cstdlib> //for malloc and free
-#include <bits/stdc++.h>
 #include<cmath>
 
 using namespace std;
