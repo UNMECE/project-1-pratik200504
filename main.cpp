@@ -28,9 +28,9 @@ const double V0=10.0;//initial voltage
 void initializeCapacitor(Capacitor* cap)
 {
 	cap->C =C_val;
-	cap->time=new double[num_timesteps];
-	cap->voltage=new double[num_timesteps];
-	cap->current=new double[num_timesteps];
+	cap->time=new double[num_timesteps]();
+	cap->voltage=new double[num_timesteps]();
+	cap->current=new double[num_timesteps]();
 
 	//initialize time array
 	for(int i=0; i<num_timesteps; i++)
